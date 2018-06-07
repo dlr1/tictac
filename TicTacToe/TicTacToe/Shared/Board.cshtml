@@ -1,0 +1,43 @@
+﻿<div>
+    <div>
+        <div class="status">@State.Status</div>
+        <div class="board-row">
+            <Square Value=@State.Values[0] OnClicked=@(()=>AppState.UpdateValue(0))></Square>
+            <Square Value=@State.Values[1] OnClicked=@(()=>AppState.UpdateValue(1))></Square>
+            <Square Value=@State.Values[2] OnClicked=@(()=>AppState.UpdateValue(2))></Square>
+        </div>
+        <div class="board-row">
+            <Square Value=@State.Values[3] OnClicked=@(()=>AppState.UpdateValue(3))></Square>
+            <Square Value=@State.Values[4] OnClicked=@(()=>AppState.UpdateValue(4))></Square>
+            <Square Value=@State.Values[5] OnClicked=@(()=>AppState.UpdateValue(5))></Square>
+        </div>
+        <div class="board-row">
+            <Square Value=@State.Values[6] OnClicked=@(()=>AppState.UpdateValue(6))></Square>
+            <Square Value=@State.Values[7] OnClicked=@(()=>AppState.UpdateValue(7))></Square>
+            <Square Value=@State.Values[8] OnClicked=@(()=>AppState.UpdateValue(8))></Square>
+        </div>
+    </div>
+
+</div>
+
+@functions{
+
+    [Parameter] private BoardState State { get; set; }
+
+    [Parameter] private AppState AppState { get; set; }
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (AppState != null)
+        {
+            State = AppState.State;         
+        }
+    }
+
+}

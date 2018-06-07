@@ -1,0 +1,19 @@
+﻿<button class="square" onclick="@SetState">
+    @Value
+</button>
+
+@functions {
+    [Parameter] private string Value { get; set; }
+
+    [Parameter] Action OnClicked { get; set;}
+    public void SetState()
+    {
+        if (Value == "")
+        OnClicked?.Invoke();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();        
+    }
+}

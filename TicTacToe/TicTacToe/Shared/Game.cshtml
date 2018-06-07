@@ -1,0 +1,30 @@
+﻿@inject AppState appState
+<div class="game" >
+    <div class="game-board">
+        <Board AppState=appState/>
+    </div>
+    <div class="game-info">
+        <ol>
+            <li><button onclick=@(() => appState.ResetBoard())>Go to game start</button></li>
+            @for (var i = 0; i < appState.History.States.Count; i++)
+            {
+                var local_i = i;
+                <li>
+                    <button onclick=@(() => appState.GoToState(local_i))>Go to move @(local_i + 1)</button>
+                </li>
+            }
+        </ol>
+    </div>
+    @*@foreach (var item in appState.History.States)
+    {
+        <Board State="@item"></Board>
+    }*@
+</div>
+
+@functions{ 
+    protected override void OnInit()
+    {
+        base.OnInit();
+        appState.OnStateChanged += StateHasChanged;
+    }
+}
